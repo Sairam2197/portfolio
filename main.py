@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import datetime
+import pandas as pd
 
 st.set_page_config(layout="wide")
 
@@ -22,3 +22,14 @@ st.text("""
 This page contains python project that I have completed and that I am working on. Go on and take a look!!!
 """)
 
+col3, col4 = st.columns(2)
+
+csv_data = pd.read_csv("data.csv", sep=";")
+
+with col3:
+    for index, row in csv_data[:10].iterrows():
+        st.header(row["title"])
+
+with col4:
+    for index,row in csv_data[10:].iterrows():
+        st.header(row["title"])
